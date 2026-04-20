@@ -930,13 +930,46 @@ Sincerely,
     if (suptBtn) suptBtn.href = buildMailto('superintendent@isd709.org', 'Superintendent Magas');
   })();
 
-  const form = document.getElementById('petition-form');
-  const thanks = document.getElementById('thanks');
-  if (form) {
-    form.addEventListener('submit', function() {
-      setTimeout(() => { thanks.style.display = 'block'; }, 100);
+</script>
+
+<script>
+  (function() {
+    const form = document.getElementById('petition-form');
+    const thanks = document.getElementById('thanks');
+    const submitBtn = form.querySelector('.submit-btn');
+
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Signing…';
+
+      const formData = new FormData(form);
+      const body = new URLSearchParams(formData).toString();
+
+      try {
+        const response = await fetch('/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: body
+        });
+
+        if (!response.ok) throw new Error('Submission failed');
+
+        // Hide form fields, show thanks message
+        Array.from(form.children).forEach(child => {
+          if (child.id !== 'thanks') child.style.display = 'none';
+        });
+        thanks.style.display = 'block';
+
+        // Smooth scroll to keep thanks in view
+        thanks.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      } catch (err) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Sign the petition →';
+        alert('Sorry, something went wrong. Please try again or email info@ourparkourvote.org.');
+      }
     });
-  }
+  })();
 </script>
 
 </body>
