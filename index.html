@@ -238,6 +238,102 @@
   .thanks-msg a { color: var(--gold); }
   .hp { position: absolute; left: -5000px; }
 
+  .success-state {
+    display: none;
+    text-align: center;
+    padding: 34px 26px;
+    background: var(--paper-warm);
+    border: 2px solid var(--gold);
+    box-shadow: 6px 6px 0 var(--gold);
+    animation: successIn 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .success-check {
+    width: 74px; height: 74px;
+    margin: 0 auto 20px;
+    border-radius: 50%;
+    background: var(--gold);
+    color: var(--ink);
+    font-size: 44px;
+    line-height: 74px;
+    font-weight: 800;
+    box-shadow: 4px 4px 0 var(--ink);
+    animation: checkPop 0.5s 0.08s backwards cubic-bezier(0.3, 1.6, 0.5, 1);
+  }
+  .success-heading {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 800;
+    font-size: 28px;
+    line-height: 1.15;
+    color: var(--pine-dark);
+    margin: 0 0 14px;
+    letter-spacing: -0.02em;
+  }
+  .success-sig-line {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--rust-dark);
+    margin: 0 0 16px;
+  }
+  .success-sig-line strong {
+    color: var(--ink);
+    font-size: 15px;
+    letter-spacing: 0;
+    text-transform: none;
+  }
+  .success-lede {
+    font-size: 14px;
+    color: var(--ink-soft);
+    line-height: 1.55;
+    margin: 0;
+    word-break: break-word;
+  }
+  .success-next {
+    margin-top: 26px;
+    padding-top: 22px;
+    border-top: 1px solid var(--rule);
+    text-align: left;
+  }
+  .success-next-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--stone);
+    margin-bottom: 12px;
+  }
+  .success-cta {
+    display: block;
+    background: var(--rust);
+    color: var(--paper);
+    padding: 14px 18px;
+    font-weight: 700;
+    text-decoration: none;
+    text-align: center;
+    border: 2px solid var(--ink);
+    box-shadow: 4px 4px 0 var(--ink);
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+  .success-cta:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 var(--gold);
+  }
+  .success-share {
+    font-size: 13px;
+    color: var(--stone);
+    line-height: 1.55;
+    margin: 14px 0 0;
+  }
+  @keyframes successIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes checkPop {
+    from { transform: scale(0.4); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+  }
+
   .scroll-cue {
     margin-top: 48px;
     text-align: center;
@@ -652,10 +748,20 @@
 
           <p class="fine-print">Your info is used only to verify signatures and send the occasional campaign update. Never sold or shared.</p>
 
-          <div class="thanks-msg" id="thanks">
-            Thanks for signing. You'll get a confirmation shortly. The next best thing you can do is <a href="#email">write your School Board member</a> or forward this page to one Duluth parent, teacher, or neighbor.
-          </div>
         </form>
+
+        <div class="success-state" id="success-state" role="status" aria-live="polite">
+          <div class="success-check" aria-hidden="true">✓</div>
+          <h2 class="success-heading">Thank you, <span id="success-name">friend</span>.</h2>
+          <p class="success-sig-line">You're signature <strong>#<span id="success-number">1</span></strong> of <span id="success-goal">8,757</span></p>
+          <p class="success-lede">Your signature has been recorded. We'll email you at <strong id="success-email">your inbox</strong> when there's news from the School Board.</p>
+
+          <div class="success-next">
+            <div class="success-next-label">The next step that matters most</div>
+            <a class="success-cta" href="#email">Write your School Board member →</a>
+            <p class="success-share">Then forward this page to one Duluth parent, teacher, or neighbor. Every signature is one more student counted.</p>
+          </div>
+        </div>
       </aside>
 
     </div>
@@ -935,8 +1041,9 @@ Sincerely,
 <script>
   (function() {
     const form = document.getElementById('petition-form');
-    const thanks = document.getElementById('thanks');
     const submitBtn = form.querySelector('.submit-btn');
+    const signCard = form.closest('.sign-card');
+    const success = document.getElementById('success-state');
 
     form.addEventListener('submit', async function(e) {
       e.preventDefault();
@@ -955,18 +1062,41 @@ Sincerely,
 
         if (!response.ok) throw new Error('Submission failed');
 
-        // Hide form fields, show thanks message
-        Array.from(form.children).forEach(child => {
-          if (child.id !== 'thanks') child.style.display = 'none';
-        });
-        thanks.style.display = 'block';
+        const rawName = (formData.get('name') || '').toString().trim();
+        const firstName = rawName.split(/\s+/)[0] || 'friend';
+        const email = (formData.get('email') || '').toString().trim();
 
-        // Smooth scroll to keep thanks in view
-        thanks.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        // Optimistic signature count bump — gives a felt sense that the action counted.
+        const cnt = document.getElementById('tracker-count');
+        const current = parseInt((cnt.textContent || '0').replace(/[^\d]/g, ''), 10) || 0;
+        const next = current + 1;
+        cnt.textContent = next.toLocaleString();
+        const fill = document.getElementById('bar-mini-fill');
+        if (fill) {
+          const pct = Math.min(100, Math.round((next / SIGNATURE_GOAL) * 100));
+          fill.style.width = pct + '%';
+        }
+
+        document.getElementById('success-name').textContent = firstName;
+        document.getElementById('success-number').textContent = next.toLocaleString();
+        document.getElementById('success-goal').textContent = SIGNATURE_GOAL.toLocaleString();
+        const emailEl = document.getElementById('success-email');
+        if (email) {
+          emailEl.textContent = email;
+        } else {
+          emailEl.parentElement.style.display = 'none';
+        }
+
+        Array.from(signCard.children).forEach(child => {
+          if (child.id !== 'success-state') child.style.display = 'none';
+        });
+        success.style.display = 'block';
+
+        success.scrollIntoView({ behavior: 'smooth', block: 'center' });
       } catch (err) {
         submitBtn.disabled = false;
         submitBtn.textContent = 'Sign the petition →';
-        alert('Sorry, something went wrong. Please try again or email info@ourparkourvote.org.');
+        alert('Sorry, something went wrong. Please try again or email hello@take-tech-out.org.');
       }
     });
   })();
