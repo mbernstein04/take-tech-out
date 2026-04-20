@@ -533,6 +533,114 @@
   }
   .panel-body .further a { margin-right: 14px; }
 
+  /* SHOW UP / VOICE */
+  .voice-section { padding: 60px 0 80px; background: var(--paper-warm); border-bottom: 1px solid var(--rule); }
+  .voice-section h2.section-h2 {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-variation-settings: 'opsz' 72;
+    font-weight: 700;
+    font-size: clamp(30px, 4vw, 44px);
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+    color: var(--pine-dark);
+    margin-bottom: 12px;
+    max-width: 20ch;
+  }
+  .voice-section .section-sub {
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+    max-width: 640px;
+    margin-bottom: 36px;
+  }
+  .voice-list { margin: 8px 0 0; }
+  .voice-item {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 22px;
+    border-top: 1.5px solid var(--ink);
+    padding: 24px 0;
+    align-items: start;
+  }
+  .voice-item:last-of-type { border-bottom: 1.5px solid var(--ink); }
+  .voice-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; letter-spacing: 0.1em;
+    color: var(--rust); font-weight: 500;
+    padding-top: 6px;
+  }
+  .voice-name {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 700;
+    font-size: clamp(20px, 2.2vw, 26px);
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+    color: var(--pine-dark);
+    margin: 0 0 6px;
+  }
+  .voice-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 10px;
+  }
+  .voice-desc {
+    font-size: 15.5px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+    margin: 0 0 10px;
+  }
+  .voice-desc a { color: var(--pine); font-weight: 500; }
+  .voice-desc a:hover { color: var(--rust); }
+  .voice-loc {
+    font-size: 13px;
+    color: var(--stone);
+    font-style: italic;
+  }
+  .voice-item .voice-emphasis {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--rust);
+    background: var(--paper);
+    border: 1px solid var(--rust);
+    padding: 3px 8px;
+    margin-top: 10px;
+  }
+  .voice-say {
+    margin-top: 44px;
+    background: var(--paper);
+    border-left: 4px solid var(--gold);
+    padding: 22px 26px;
+  }
+  .voice-say-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--rust);
+    margin-bottom: 10px;
+  }
+  .voice-say p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--ink);
+    margin: 0;
+  }
+  .voice-calendar {
+    margin-top: 28px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.05em;
+    color: var(--stone);
+  }
+  .voice-calendar a { color: var(--rust); font-weight: 500; text-decoration: none; }
+  .voice-calendar a:hover { color: var(--rust-dark); }
+
   /* EMAIL BOARD */
   .email-section { padding: 80px 0; background: var(--paper); border-bottom: 1px solid var(--rule); }
   .email-intro .section-label {
@@ -704,7 +812,7 @@
           <span class="b2">Put the teachers back in.</span>
           <span class="b3">Get the kids outside.</span>
         </h1>
-        <p class="sub">On March 24, Duluth Public Schools announced <strong>$4.2 million in classroom cuts</strong>, with teacher displacements beginning in April. At the same time, the district's Chromebook program, software licenses, and Digital Innovation department are continuing as planned. We think the priorities are reversed. And Duluth, home to one of the country's oldest outdoor-education degree programs and one of its richest networks of nature preschools, can do much better.</p>
+        <p class="sub">On March 24, Duluth Public Schools announced <strong>$4.2 million in classroom cuts</strong>, with teacher displacements beginning in April. At the same time, the district's Chromebook program, software licenses, and Digital Innovation department are continuing as planned. We think the priorities are reversed. And Duluth, home to one of the country's oldest outdoor-education degree programs and one of its richest networks of nature schools and camps, can do much better.</p>
       </div>
 
       <aside class="sign-card">
@@ -730,8 +838,8 @@
 
           <div class="field-row">
             <div class="field">
-              <label for="email">Email</label>
-              <input id="email" name="email" type="email" required />
+              <label for="petition-email">Email</label>
+              <input id="petition-email" name="email" type="email" required />
             </div>
             <div class="field">
               <label for="zip">Duluth ZIP</label>
@@ -889,6 +997,73 @@
       </div>
     </details>
 
+  </div>
+</section>
+
+<section class="voice-section" id="show-up">
+  <div class="narrow">
+    <div class="accordion-intro">Show Up</div>
+    <h2 class="section-h2">Make your voice heard.</h2>
+    <p class="section-sub">Signing the petition matters. Showing up in person matters more. The School Board listens hardest to the people in the room — three minutes of a parent's story from the podium carries further than a hundred emails.</p>
+
+    <div class="voice-list">
+      <article class="voice-item">
+        <div class="voice-num">01</div>
+        <div>
+          <h3 class="voice-name">School Board Listening Sessions</h3>
+          <div class="voice-meta">Before each regular meeting · 5:30 PM · 3 minutes per speaker</div>
+          <p class="voice-desc">The single most direct way to be heard by the whole Board. Sign up by <strong>noon Monday prior</strong>: email <a href="mailto:superintendent@isd709.org">superintendent@isd709.org</a> or call <a href="tel:+12183368752">218.336.8752</a>.</p>
+          <div class="voice-loc">District Services Center · 709 Portia Johnson Drive</div>
+          <div class="voice-emphasis">Most direct channel</div>
+        </div>
+      </article>
+
+      <article class="voice-item">
+        <div class="voice-num">02</div>
+        <div>
+          <h3 class="voice-name">Regular School Board Meetings</h3>
+          <div class="voice-meta">Third Tuesday monthly · 6:30 PM</div>
+          <p class="voice-desc">Open to the public; where the Board votes on policy and budget. Livestreamed at <a href="https://www.youtube.com/@DuluthSchools" target="_blank" rel="noopener">youtube.com/@DuluthSchools</a>.</p>
+          <div class="voice-loc">District Services Center · 709 Portia Johnson Drive</div>
+        </div>
+      </article>
+
+      <article class="voice-item">
+        <div class="voice-num">03</div>
+        <div>
+          <h3 class="voice-name">Committee of the Whole</h3>
+          <div class="voice-meta">First Tuesday monthly · 4:30 PM</div>
+          <p class="voice-desc">Where most policy gets shaped before it reaches the full Board. A smaller audience, and an earlier point in the process where a well-framed question can change a direction.</p>
+          <div class="voice-loc">District Services Center · 709 Portia Johnson Drive</div>
+        </div>
+      </article>
+
+      <article class="voice-item">
+        <div class="voice-num">04</div>
+        <div>
+          <h3 class="voice-name">Policy Committee</h3>
+          <div class="voice-meta">Second Thursday monthly · 4:30 PM</div>
+          <p class="voice-desc">A smaller venue still. Questions and challenges on specific policies — like the 1:1 take-home Chromebook policy — are easier to raise here than at a full Board meeting.</p>
+          <div class="voice-loc">District Services Center · 709 Portia Johnson Drive</div>
+        </div>
+      </article>
+
+      <article class="voice-item">
+        <div class="voice-num">05</div>
+        <div>
+          <h3 class="voice-name">Your school's PTA</h3>
+          <div class="voice-meta">Ongoing · Every Duluth elementary, middle &amp; high school</div>
+          <p class="voice-desc">Find your school's parent organization through your school's website, then raise classroom screen time at the next meeting. PTAs that pass a resolution get the Board's attention faster than individual emails ever will.</p>
+        </div>
+      </article>
+    </div>
+
+    <div class="voice-say">
+      <div class="voice-say-label">When it's your turn to speak</div>
+      <p>You don't need to be an expert. You don't need statistics. Say what you've seen at home with your own kid — the homework that became a YouTube tab, the morning fights over a device, the classroom they came home talking about when a teacher put the Chromebooks away. Concrete personal stories land harder than any citation.</p>
+    </div>
+
+    <p class="voice-calendar">Dates shift occasionally. Confirm current times at <a href="https://www.isd709.org/calendar" target="_blank" rel="noopener">isd709.org/calendar →</a></p>
   </div>
 </section>
 
