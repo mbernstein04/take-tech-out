@@ -1180,6 +1180,24 @@ Sincerely,
     setTimeout(() => { fill.style.width = pct + '%'; }, 150);
   })();
 
+  // Live count from Netlify Forms via /.netlify/functions/signature-count.
+  // Fails silently — if the function isn't configured yet, the static
+  // SIGNATURE_COUNT above stays visible and nothing breaks.
+  (async function fetchLiveCount() {
+    const cnt = document.getElementById('tracker-count');
+    const fill = document.getElementById('bar-mini-fill');
+    if (!cnt || !fill) return;
+    try {
+      const res = await fetch('/.netlify/functions/signature-count', { cache: 'no-store' });
+      if (!res.ok) return;
+      const data = await res.json();
+      if (typeof data.count !== 'number') return;
+      cnt.textContent = data.count.toLocaleString();
+      const pct = Math.min(100, Math.round((data.count / SIGNATURE_GOAL) * 100));
+      fill.style.width = pct + '%';
+    } catch (_) { /* offline or function not deployed — keep static count */ }
+  })();
+
   function buildMailto(emails, nameToken) {
     const to = Array.isArray(emails) ? emails.join(',') : emails;
     const body = EMAIL_BODY.replace('{NAME}', nameToken || 'Board Members and Superintendent Magas');
