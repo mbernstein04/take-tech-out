@@ -666,87 +666,165 @@
     max-width: 680px;
   }
 
-  .email-buttons-row {
-    display: flex; flex-wrap: wrap; gap: 14px;
-    margin-top: 24px; margin-bottom: 36px;
+  /* DISTRICT EMAIL TOOL */
+  .district-tool {
+    background: var(--paper-warm);
+    border: 1.5px solid var(--ink);
+    box-shadow: 6px 6px 0 var(--pine-dark);
+    padding: 26px 28px 22px;
+    max-width: 720px;
+    margin: 8px 0 56px;
   }
-  .email-buttons-row a {
-    display: inline-flex; align-items: center; gap: 10px;
-    padding: 14px 22px;
-    background: var(--pine-dark);
+  .district-tool-label {
+    display: block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--pine-dark);
+    margin-bottom: 12px;
+  }
+  .district-tool-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 10px;
+    align-items: stretch;
+  }
+  @media (max-width: 620px) {
+    .district-tool-row { grid-template-columns: 1fr; }
+  }
+  .district-select {
+    font-family: 'Familjen Grotesk', sans-serif;
+    font-size: 15px;
+    padding: 13px 36px 13px 14px;
+    background-color: var(--paper);
+    color: var(--ink);
+    border: 1.5px solid var(--ink);
+    border-radius: 0;
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path d='M1 1l5 5 5-5' fill='none' stroke='%23171a20' stroke-width='1.75'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    cursor: pointer;
+    min-width: 0;
+    transition: box-shadow 0.15s, transform 0.15s;
+  }
+  .district-select:focus {
+    outline: none;
+    box-shadow: 3px 3px 0 var(--rust);
+    transform: translate(-1px, -1px);
+  }
+  .district-email-btn {
+    padding: 13px 22px;
+    background: var(--rust);
     color: var(--paper);
     font-family: 'Familjen Grotesk', sans-serif;
-    font-weight: 600; font-size: 14.5px;
-    text-decoration: none;
-    border: 1.5px solid var(--pine-dark);
-    transition: all 0.15s;
-  }
-  .email-buttons-row a:hover {
-    background: var(--rust); border-color: var(--rust);
-    transform: translate(-2px, -2px); box-shadow: 4px 4px 0 var(--ink);
-  }
-  .email-buttons-row a.secondary {
-    background: transparent;
-    color: var(--pine-dark);
-    border-color: var(--pine-dark);
-  }
-  .email-buttons-row a.secondary:hover { background: var(--pine-dark); color: var(--paper); }
-
-  .board-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2px;
-    background: var(--ink);
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: -0.005em;
     border: 1.5px solid var(--ink);
+    cursor: pointer;
+    transition: transform 0.15s, box-shadow 0.15s, background 0.15s;
+    white-space: nowrap;
   }
-  @media (max-width: 820px) { .board-grid { grid-template-columns: repeat(2, 1fr); } }
-  @media (max-width: 520px) { .board-grid { grid-template-columns: 1fr; } }
-  .board-card {
-    background: var(--paper-warm);
-    padding: 22px 18px;
-    display: flex; flex-direction: column;
-    transition: background 0.15s;
+  .district-email-btn:hover {
+    background: var(--rust-dark);
+    transform: translate(-2px, -2px);
+    box-shadow: 4px 4px 0 var(--gold);
   }
-  .board-card:hover { background: var(--paper); }
-  .board-card .role {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
-    color: var(--rust); margin-bottom: 6px;
-  }
-  .board-card h4 {
-    font-family: 'Bricolage Grotesque', sans-serif;
-    font-weight: 700; font-size: 19px; line-height: 1.15;
-    color: var(--pine-dark); margin-bottom: 4px; letter-spacing: -0.01em;
-  }
-  .board-card .district { font-size: 12px; color: var(--ink-soft); margin-bottom: 12px; }
-  .board-card .contact {
-    margin-top: auto; padding-top: 10px;
-    border-top: 1px dashed var(--rule);
-  }
-  .board-card .contact a {
-    display: block; font-size: 12px;
-    word-break: break-word;
-    color: var(--rust); text-decoration: none;
-    margin-bottom: 2px;
-  }
-  .board-card .contact a:hover { text-decoration: underline; }
-  .board-card .contact .phone {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px; color: var(--ink-soft);
-  }
-  .board-card .mail-btn {
+  .district-lookup {
     display: inline-block;
-    margin-top: 12px;
-    padding: 8px 12px;
-    background: var(--rust);
-    color: var(--paper) !important;
-    font-family: 'Familjen Grotesk', sans-serif;
-    font-weight: 600; font-size: 11px;
-    letter-spacing: 0.05em; text-transform: uppercase;
-    text-decoration: none !important;
-    border: 1.5px solid var(--rust);
+    margin-top: 16px;
+    font-size: 13px;
+    color: var(--pine);
+    text-decoration: none;
+    border-bottom: 1px solid var(--pine);
+    padding-bottom: 1px;
   }
-  .board-card .mail-btn:hover { background: var(--rust-dark); border-color: var(--rust-dark); }
+  .district-lookup:hover {
+    color: var(--rust);
+    border-bottom-color: var(--rust);
+  }
+  .district-hint {
+    margin: 10px 0 0;
+    font-size: 13px;
+    color: var(--rust-dark);
+    min-height: 20px;
+  }
+
+  /* ROSTER (compact individual contacts) */
+  .roster {
+    border-top: 1.5px solid var(--ink);
+    padding-top: 34px;
+  }
+  .roster-title {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    color: var(--pine-dark);
+    margin-bottom: 22px;
+    letter-spacing: -0.01em;
+  }
+  .roster-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px 32px;
+    margin-bottom: 28px;
+  }
+  @media (max-width: 620px) { .roster-grid { grid-template-columns: 1fr; } }
+  .roster-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--rust);
+    margin-bottom: 3px;
+  }
+  .roster-name {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 700;
+    font-size: 16.5px;
+    color: var(--pine-dark);
+    letter-spacing: -0.01em;
+    margin-bottom: 2px;
+    line-height: 1.2;
+  }
+  .roster-card a {
+    font-size: 13px;
+    color: var(--ink-soft);
+    word-break: break-word;
+    text-decoration: none;
+    border-bottom: 1px dotted var(--rule);
+  }
+  .roster-card a:hover {
+    color: var(--rust);
+    border-bottom-color: var(--rust);
+  }
+  .roster-inboxes {
+    background: var(--paper-warm);
+    padding: 16px 20px;
+    border-left: 3px solid var(--pine-dark);
+    font-size: 13.5px;
+    line-height: 1.75;
+    color: var(--ink-soft);
+  }
+  .roster-inboxes > div + div { margin-top: 4px; }
+  .roster-inbox-label {
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .roster-inboxes a {
+    color: var(--rust);
+    word-break: break-word;
+  }
+  .roster-footnote {
+    font-size: 12px;
+    color: var(--ink-soft);
+    font-style: italic;
+    margin-top: 18px;
+    max-width: 720px;
+  }
 
   /* FOOTER */
   footer { background: var(--ink); color: var(--paper-warm); padding: 50px 0 30px; }
@@ -1000,6 +1078,43 @@
   </div>
 </section>
 
+<section class="email-section" id="email">
+  <div class="wrap">
+    <div class="email-intro">
+      <div class="section-label">Email the Decision Makers</div>
+      <h2>Emailing matters. <em>Naming your district matters more.</em></h2>
+      <p>Board members listen hardest to their own constituents. A short, specific note from someone who identifies their district carries more weight than a long email from an anonymous inbox. Pick your district below — we'll open a pre-filled email with the right addresses and the right ask. Edit anything, add a personal sentence about your kid or your classroom, and send.</p>
+    </div>
+
+    <div class="district-tool">
+      <label for="district-select" class="district-tool-label">Which district do you live in?</label>
+      <div class="district-tool-row">
+        <select id="district-select" class="district-select" aria-describedby="district-hint">
+          <option value="" disabled selected>Select your district</option>
+          <option value="1">District 1 (East Duluth, Lakewood, Gnesen, Normanna)</option>
+          <option value="2">District 2 (Park Point, Downtown, Observation Hill)</option>
+          <option value="3">District 3 (West Duluth, Lincoln Park, Irving)</option>
+          <option value="4">District 4 (Hillside, Endion, Chester Park)</option>
+          <option value="at-large">I live outside Duluth / I'm not sure / At-large</option>
+        </select>
+        <button id="district-email-btn" class="district-email-btn" type="button">Email the Board and Superintendent →</button>
+      </div>
+      <a class="district-lookup" href="https://www.isd709.org/about-us/school-board" target="_blank" rel="noopener">Don't know your district? Find it here →</a>
+      <p class="district-hint" id="district-hint" aria-live="polite"></p>
+    </div>
+
+    <div class="roster">
+      <h3 class="roster-title">Prefer to contact individuals directly?</h3>
+      <div class="roster-grid" id="roster-grid"></div>
+      <div class="roster-inboxes">
+        <div><span class="roster-inbox-label">General inbox (all seven Board members):</span> <a href="mailto:schoolboard@isd709.org">schoolboard@isd709.org</a></div>
+        <div><span class="roster-inbox-label">Superintendent Magas:</span> <a href="mailto:superintendent@isd709.org">superintendent@isd709.org</a></div>
+      </div>
+      <p class="roster-footnote">Contact info from the public ISD 709 School Board and Superintendent pages.</p>
+    </div>
+  </div>
+</section>
+
 <section class="voice-section" id="show-up">
   <div class="narrow">
     <div class="accordion-intro">Show Up</div>
@@ -1072,27 +1187,6 @@
   </div>
 </section>
 
-<section class="email-section" id="email">
-  <div class="wrap">
-    <div class="email-intro">
-      <div class="section-label">Contact Decision-Makers</div>
-      <h2>Signing is step one. <em>Emailing is step two.</em></h2>
-      <p>The people who decide whether Duluth keeps issuing Chromebooks to every child are listed below. A paragraph from a real parent or teacher moves them more than any press release ever will. Click a name to open a pre-filled email you can edit and send, or use the two buttons to write to the whole board at once.</p>
-
-      <div class="email-buttons-row">
-        <a href="#" id="email-all-board">✉ Email the entire School Board</a>
-        <a href="#" id="email-supt" class="secondary">✉ Email Superintendent Magas</a>
-      </div>
-    </div>
-
-    <div class="board-grid" id="board-grid"></div>
-
-    <p style="font-size: 12px; color: var(--ink-soft); font-style: italic; margin-top: 20px; max-width: 720px;">
-      Contact info from the public ISD 709 School Board and Superintendent pages. Next regular School Board meeting: check <a href="https://www.isd709.org/calendar" target="_blank" rel="noopener">isd709.org/calendar</a>.
-    </p>
-  </div>
-</section>
-
 <footer>
   <div class="wrap">
     <div>
@@ -1119,55 +1213,30 @@
   const SIGNATURE_COUNT = 0;
   const SIGNATURE_GOAL  = 8757;
 
+  // Seven voting Board members. Order and meta match what gets rendered in the roster.
   const BOARD = [
-    { name: "Kelly Durick Eder", role: "Chair", district: "At-Large · Term ends Jan 2030",
-      email: "kelly.durickeder@isd709.org", phone: "701-741-6003" },
-    { name: "Jill Lofald", role: "Vice Chair", district: "District 4 · Term ends Jan 2030",
-      email: "jill.lofald@isd709.org", phone: "218-391-4696" },
-    { name: "Sarah Mikesell", role: "Clerk", district: "District 2 · Term ends Jan 2028",
-      email: "sarah.mikesell@isd709.org", phone: "218-206-6932" },
-    { name: "Amber Sadowski", role: "Treasurer", district: "At-Large · Term ends Jan 2030",
-      email: "amber.sadowski@isd709.org", phone: "218-393-6952" },
-    { name: "Rosie Loeffler-Kemp", role: "Member", district: "District 1 · Term ends Jan 2030",
-      email: "rosalie.loefflerkemp@isd709.org", phone: "218-341-2014" },
-    { name: "Henry Banks", role: "Member", district: "District 3 · Term ends Jan 2028",
-      email: "henry.banks@isd709.org", phone: "218-461-1690" },
-    { name: "Stephanie Williams", role: "Member", district: "At-Large · Term ends Jan 2028",
-      email: "stephanie.williams@isd709.org", phone: "218-260-2957" },
-    { name: "John Magas", role: "Superintendent", district: "Superintendent's Office",
-      email: "superintendent@isd709.org", phone: "218-336-8752" },
-    { name: "Anthony Bonds", role: "Asst. Superintendent", district: "Teaching, Learning & Equity",
-      email: "anthony.bonds@isd709.org", phone: "218-336-8700" }
+    { name: "Kelly Durick Eder",   role: "Chair",      district: "At-Large",
+      email: "kelly.durickeder@isd709.org" },
+    { name: "Jill Lofald",         role: "Vice Chair", district: "District 4",
+      email: "jill.lofald@isd709.org" },
+    { name: "Sarah Mikesell",      role: "Clerk",      district: "District 2",
+      email: "sarah.mikesell@isd709.org" },
+    { name: "Amber Sadowski",      role: "Treasurer",  district: "At-Large",
+      email: "amber.sadowski@isd709.org" },
+    { name: "Henry Banks",         role: "Member",     district: "District 3",
+      email: "henry.banks@isd709.org" },
+    { name: "Rosie Loeffler-Kemp", role: "Member",     district: "District 1",
+      email: "rosalie.loefflerkemp@isd709.org" },
+    { name: "Stephanie Williams",  role: "Member",     district: "At-Large",
+      email: "stephanie.williams@isd709.org" }
   ];
 
-  const EMAIL_SUBJECT = "Please reconsider the 1:1 Chromebook policy in ISD 709";
-
-  const EMAIL_BODY = `Dear {NAME},
-
-As a Duluth resident, I'm writing about the $4.2 million in classroom reductions the district announced on March 24, and to respectfully ask the Board to reconsider how educational technology fits into the picture as those reductions are implemented.
-
-[A short personal paragraph here matters more than anything else — a sentence or two about your child, your classroom, or why this issue matters to you.]
-
-The reductions fall heavily on the classroom: $1.78 million from middle and high schools, $1.26 million from elementary schools, staff "displacements" beginning in April. At the same time, the 1:1 take-home Chromebook program at the secondary level, the classroom-cart Chromebooks at the elementary level, the Digital Innovation department, the software licensing, and the device replacement cycle all continue as budgeted — an estimated $3–5 million per year, based on national per-pupil technology-spending benchmarks applied to ISD 709's enrollment. I understand these are hard trade-offs, and I appreciate the work the Board and administration have put into making them. But I think the balance between classroom staffing and educational technology deserves another look before the reductions take effect.
-
-I'm asking the Board and Superintendent to:
-
-  1. At the elementary level, pull Chromebooks out of daily classroom use. They are not issued 1:1 today — they sit in classroom carts — and the research strongly suggests they should not be in children's hands at all during the elementary school day. Reserve them for specific, teacher-chosen lessons where a screen demonstrably helps.
-
-  2. At the middle- and high-school level, end the 1:1 take-home policy. Follow the model now being adopted in Kansas, Michigan, and elsewhere: keep a set of Chromebooks in classroom carts for specific assignments, and stop sending a personal device home with every student every night.
-
-  3. Redirect the savings to protect classroom teacher positions facing displacement this spring.
-
-  4. Begin a transition toward physical books, additional classroom teachers, and structured outdoor learning in Duluth's parks and natural areas.
-
-A summary of the evidence, including UMD Prof. Aaron Boyson's expert alert on children's screen time, is at take-tech-out.org.
-
-Thank you for your service to Duluth's students.
-
-Sincerely,
-[Your name]
-[Your address / ZIP]
-`;
+  const DISTRICT_REPS = {
+    '1': 'Rosie Loeffler-Kemp',
+    '2': 'Sarah Mikesell',
+    '3': 'Henry Banks',
+    '4': 'Jill Lofald'
+  };
 
   (function renderTracker() {
     const cnt = document.getElementById('tracker-count');
@@ -1198,40 +1267,81 @@ Sincerely,
     } catch (_) { /* offline or function not deployed — keep static count */ }
   })();
 
-  function buildMailto(emails, nameToken) {
-    const to = Array.isArray(emails) ? emails.join(',') : emails;
-    const body = EMAIL_BODY.replace('{NAME}', nameToken || 'Board Members and Superintendent Magas');
+  function buildDistrictEmail(districtValue) {
+    const isNumbered = districtValue && districtValue !== 'at-large';
+    const districtLabel = isNumbered ? 'District ' + districtValue : null;
+    const rep = isNumbered ? DISTRICT_REPS[districtValue] : null;
+
+    const subject = isNumbered
+      ? 'Classroom spending, from a resident of ' + districtLabel
+      : 'Classroom spending, from a Duluth resident';
+
+    const residencyLine = isNumbered
+      ? "I'm a resident of " + districtLabel + ", writing to you about the district's classroom technology spending."
+      : "I'm writing to you about the district's classroom technology spending.";
+
+    const lines = [
+      'Dear School Board members and Superintendent Magas,',
+      '',
+      residencyLine
+    ];
+
+    if (rep) {
+      lines.push('', rep + ", as my district's board member, I especially want to hear your position on this.");
+    }
+
+    lines.push(
+      '',
+      "The $4.2 million in classroom reductions announced this spring — set against the continued spending on Chromebooks, software licensing, and the Digital Innovation department — is the wrong trade-off. Kids in ISD 709 need more time with teachers, books, and the outdoors, not more time on screens. Duluth is home to one of the country's oldest outdoor-education programs and one of its richest networks of nature schools and camps; we should be leading the national reckoning on classroom technology, not trailing it.",
+      '',
+      'Please cut classroom technology spending before cutting teachers, and pause any new technology referendum until there is genuine community input.',
+      '',
+      'Respectfully,',
+      '',
+      '—[your name]',
+      '[your address]',
+      'Duluth, MN'
+    );
+
+    const to = 'schoolboard@isd709.org,superintendent@isd709.org';
     return 'mailto:' + to +
-           '?subject=' + encodeURIComponent(EMAIL_SUBJECT) +
-           '&body=' + encodeURIComponent(body);
+           '?subject=' + encodeURIComponent(subject) +
+           '&body=' + encodeURIComponent(lines.join('\n'));
   }
 
-  (function renderBoard() {
-    const grid = document.getElementById('board-grid');
+  (function renderRoster() {
+    const grid = document.getElementById('roster-grid');
     if (!grid) return;
-    grid.innerHTML = BOARD.map(m => `
-      <div class="board-card">
-        <div class="role">${m.role}</div>
-        <h4>${m.name}</h4>
-        <div class="district">${m.district}</div>
-        <div class="contact">
-          <a href="mailto:${m.email}">${m.email}</a>
-          <a class="phone" href="tel:${m.phone.replace(/[^0-9+]/g,'')}">${m.phone}</a>
-        </div>
-        <a class="mail-btn" href="${buildMailto(m.email, m.name.split(' ').slice(-1)[0])}">✉ Write pre-filled email</a>
-      </div>
-    `).join('');
+    grid.innerHTML = BOARD.map(function (m) {
+      const meta = (m.role && m.role !== 'Member') ? (m.role + ' · ' + m.district) : m.district;
+      return '<div class="roster-card">'
+           +   '<div class="roster-meta">' + meta + '</div>'
+           +   '<div class="roster-name">' + m.name + '</div>'
+           +   '<a href="mailto:' + m.email + '">' + m.email + '</a>'
+           + '</div>';
+    }).join('');
   })();
 
-  (function wireGroupButtons() {
-    const allBtn = document.getElementById('email-all-board');
-    const suptBtn = document.getElementById('email-supt');
-    if (allBtn) {
-      const boardEmails = BOARD.filter(m => m.role !== 'Superintendent' && m.role !== 'Asst. Superintendent').map(m => m.email);
-      boardEmails.push('schoolboard@isd709.org');
-      allBtn.href = buildMailto(boardEmails, 'School Board Members');
-    }
-    if (suptBtn) suptBtn.href = buildMailto('superintendent@isd709.org', 'Superintendent Magas');
+  (function wireDistrictTool() {
+    const select = document.getElementById('district-select');
+    const btn = document.getElementById('district-email-btn');
+    const hint = document.getElementById('district-hint');
+    if (!select || !btn) return;
+
+    btn.addEventListener('click', function () {
+      const val = select.value;
+      if (!val) {
+        if (hint) hint.textContent = 'Pick a district first — "at-large" works if you\'re not sure.';
+        select.focus();
+        return;
+      }
+      if (hint) hint.textContent = '';
+      window.location.href = buildDistrictEmail(val);
+    });
+
+    select.addEventListener('change', function () {
+      if (hint) hint.textContent = '';
+    });
   })();
 
 </script>
