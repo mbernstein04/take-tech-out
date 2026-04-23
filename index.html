@@ -226,6 +226,25 @@
     box-shadow: 4px 4px 0 var(--gold);
   }
   .fine-print { font-size: 12px; color: var(--stone); margin-top: 12px; line-height: 1.5; }
+
+  .in-person {
+    margin-top: 18px;
+    padding-top: 16px;
+    border-top: 1px dashed var(--rule);
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+  }
+  .in-person-label {
+    display: block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--rust);
+    margin-bottom: 6px;
+  }
+  .in-person strong { color: var(--ink); font-weight: 600; }
   .thanks-msg {
     display: none;
     padding: 16px;
@@ -933,6 +952,11 @@
           <button class="submit-btn" type="submit">Sign the petition →</button>
 
           <p class="fine-print">Your info is used only to verify signatures and send the occasional campaign update. Never sold or shared.</p>
+
+          <div class="in-person">
+            <span class="in-person-label">✎ Prefer pen &amp; paper?</span>
+            You can also sign the petition <strong>in hard copy</strong> at <strong>Zenith Bookstore</strong> in Duluth. Paper signatures must be signed in person on the physical petition — we can't accept signatures collected any other way.
+          </div>
 
         </form>
 
