@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The Research — Take Tech Out</title>
+<meta name="description" content="The peer-reviewed evidence on classroom technology, outdoor learning, and academic outcomes. For the ISD 709 community." />
+
+<meta property="og:title" content="The Research — Take Tech Out" />
+<meta property="og:description" content="The peer-reviewed evidence on classroom technology, outdoor learning, and academic outcomes." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://take-tech-out.org/research" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Familjen+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --paper: #faf4e6;
+    --paper-warm: #f1e9d1;
+    --ink: #171a20;
+    --ink-soft: #3a3f48;
+    --pine: #0c5b63;
+    --pine-dark: #073f45;
+    --rust: #ea5a3d;
+    --rust-dark: #c53f25;
+    --gold: #e8a520;
+    --stone: #7e7a6f;
+    --rule: #171a2030;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Familjen Grotesk', system-ui, sans-serif;
+    font-size: 17px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 100;
+    opacity: 0.35;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.4  0 0 0 0 0.35  0 0 0 0 0.25  0 0 0 0.15 0'/></filter><rect width='200' height='200' filter='url(%23n)'/></svg>");
+  }
+
+  a { color: var(--rust); text-decoration-thickness: 1.5px; text-underline-offset: 3px; }
+  a:hover { color: var(--rust-dark); }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 28px; }
+  .narrow { max-width: 760px; margin: 0 auto; padding: 0 28px; }
+
+  /* MASTHEAD (matches homepage) */
+  .masthead {
+    border-bottom: 1.5px solid var(--ink);
+    padding: 14px 0;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .masthead .wrap { display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; }
+  .masthead .mark {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 700; font-size: 15px; letter-spacing: -0.01em;
+    text-transform: none; color: var(--ink); text-decoration: none;
+  }
+  .masthead .mark:hover { color: var(--rust); }
+  .masthead .right a { margin-left: 22px; color: var(--ink); text-decoration: none; }
+  .masthead .right a:hover { color: var(--rust); }
+  .masthead .right a.active { color: var(--rust); border-bottom: 1.5px solid var(--rust); padding-bottom: 2px; }
+
+  /* PAGE HERO */
+  .page-hero {
+    padding: 56px 0 40px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .page-hero .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--rust); margin-bottom: 22px;
+    display: flex; align-items: center; gap: 14px;
+  }
+  .page-hero .eyebrow::before { content: ''; width: 44px; height: 2px; background: var(--rust); }
+  .page-hero h1 {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-variation-settings: 'opsz' 96;
+    font-weight: 800;
+    font-size: clamp(38px, 5.4vw, 64px);
+    line-height: 1.0;
+    letter-spacing: -0.03em;
+    color: var(--pine-dark);
+    margin-bottom: 22px;
+    max-width: 22ch;
+  }
+  .page-hero h1 em {
+    font-style: italic;
+    font-weight: 500;
+    color: var(--rust);
+  }
+  .page-hero .lede {
+    font-size: clamp(16px, 1.5vw, 18px);
+    line-height: 1.6;
+    color: var(--ink-soft);
+    max-width: 60ch;
+    margin-bottom: 24px;
+  }
+  .page-hero .meta-strip {
+    display: flex; flex-wrap: wrap; gap: 28px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--stone);
+    padding-top: 22px;
+    border-top: 1px dashed var(--rule);
+  }
+  .page-hero .meta-strip span::before { content: '→ '; color: var(--rust); }
+
+  /* CONVERGING CONCLUSIONS */
+  .converge {
+    padding: 50px 0;
+    background: var(--paper-warm);
+    border-bottom: 1px solid var(--rule);
+  }
+  .converge .grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 44px;
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+  @media (max-width: 800px) { .converge .grid { grid-template-columns: 1fr; gap: 22px; } }
+  .converge h2 {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 700; font-size: 28px; line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--pine-dark);
+  }
+  .converge p {
+    font-size: 17px; line-height: 1.6;
+    color: var(--ink-soft);
+    margin-bottom: 14px;
+  }
+  .converge p:last-child { margin-bottom: 0; }
+  .converge p strong { color: var(--ink); font-weight: 600; }
+
+  /* SECTION HEADER (shared) */
+  .rsection {
+    padding: 64px 0 56px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .section-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--rust); margin-bottom: 14px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .section-num::before { content: ''; width: 36px; height: 2px; background: var(--rust); }
+  .rsection h2 {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-variation-settings: 'opsz' 72;
+    font-weight: 700;
+    font-size: clamp(32px, 4.4vw, 52px);
+    line-height: 1.02;
+    letter-spacing: -0.025em;
+    color: var(--pine-dark);
+    margin-bottom: 14px;
+    max-width: 18ch;
+  }
+  .rsection h2 em {
+    font-style: italic;
+    font-weight: 500;
+    color: var(--rust);
+  }
+  .rsection .deck {
+    font-size: 16.5px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+    max-width: 60ch;
+    margin-bottom: 36px;
+  }
+  .rsection .deck em { font-style: italic; }
+
+  /* CITATION CARDS — pillow style */
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 22px;
+    margin-top: 8px;
+  }
+  @media (max-width: 760px) { .cards { grid-template-columns: 1fr; } }
+  .card {
+    background: var(--paper);
+    border: 1.5px solid var(--ink);
+    box-shadow: 5px 5px 0 var(--pine-dark);
+    padding: 22px 24px;
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+  .card:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 7px 7px 0 var(--rust);
+  }
+  .card.anchor { box-shadow: 5px 5px 0 var(--rust); }
+  .card.anchor:hover { box-shadow: 7px 7px 0 var(--gold); }
+  .card .tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--rust); margin-bottom: 10px;
+  }
+  .card .title {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 1.22;
+    letter-spacing: -0.012em;
+    color: var(--pine-dark);
+    margin: 0 0 8px;
+  }
+  .card .source {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    line-height: 1.45;
+    color: var(--ink-soft);
+    margin-bottom: 12px;
+  }
+  .card .source em { font-style: italic; }
+  .card .finding {
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card .finding strong { color: var(--ink); font-weight: 600; }
+  .card .finding em { font-style: italic; }
+
+  /* IMPLEMENTATION (dark band) */
+  .impl {
+    padding: 70px 0 64px;
+    background: var(--pine-dark);
+    color: var(--paper);
+    border-bottom: 1px solid var(--rule);
+  }
+  .impl .section-num { color: var(--gold); }
+  .impl .section-num::before { background: var(--gold); }
+  .impl h2 { color: var(--paper); }
+  .impl h2 em { color: var(--gold); font-style: italic; font-weight: 500; }
+  .impl .deck {
+    color: #d8d2bc;
+    margin-bottom: 18px;
+  }
+  .impl .deck em { color: var(--gold); font-style: italic; }
+  .impl .deck strong { color: var(--paper); font-weight: 600; }
+
+  .phases { counter-reset: phase; margin-top: 24px; }
+  .phase {
+    counter-increment: phase;
+    border-top: 1px solid #ffffff22;
+    padding: 26px 0 26px 78px;
+    position: relative;
+  }
+  .phase:last-child { border-bottom: 1px solid #ffffff22; }
+  .phase::before {
+    content: counter(phase, decimal-leading-zero);
+    position: absolute;
+    left: 0; top: 26px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 32px;
+    font-weight: 600;
+    color: var(--gold);
+    letter-spacing: -0.02em;
+  }
+  .phase h3 {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 1.2;
+    letter-spacing: -0.012em;
+    color: var(--paper);
+    margin: 0 0 8px;
+  }
+  .phase p {
+    font-size: 15px;
+    line-height: 1.6;
+    color: #d8d2bc;
+  }
+  .phase p strong { color: var(--paper); font-weight: 600; }
+  .phase p em { color: var(--gold); font-style: italic; }
+
+  /* READING LIST */
+  .reading { padding: 64px 0 56px; border-bottom: 1px solid var(--rule); }
+  .reading h2 {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 700;
+    font-size: clamp(32px, 4.4vw, 52px);
+    line-height: 1.02;
+    letter-spacing: -0.025em;
+    color: var(--pine-dark);
+    margin-bottom: 14px;
+  }
+  .reading .deck {
+    font-size: 16.5px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+    max-width: 60ch;
+    margin-bottom: 36px;
+  }
+  .reading-list { margin-top: 24px; }
+  .ref {
+    border-top: 1px solid var(--rule);
+    padding: 18px 0;
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 22px;
+    align-items: baseline;
+  }
+  .ref:last-child { border-bottom: 1px solid var(--rule); }
+  .ref .year {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--rust);
+    font-weight: 500;
+    letter-spacing: 0.04em;
+  }
+  .ref .body {
+    font-size: 14.5px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+  }
+  .ref .body strong {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 700;
+    color: var(--pine-dark);
+    letter-spacing: -0.01em;
+  }
+  .ref .body em { font-style: italic; }
+  .ref .body a {
+    color: var(--pine);
+    text-decoration: underline;
+    text-decoration-color: var(--rule);
+    text-underline-offset: 3px;
+  }
+  .ref .body a:hover { color: var(--rust); text-decoration-color: var(--rust); }
+
+  /* CTA back to homepage */
+  .cta-back {
+    padding: 50px 0 60px;
+    background: var(--paper-warm);
+    border-bottom: 1px solid var(--rule);
+    text-align: center;
+  }
+  .cta-back h3 {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 700;
+    font-size: 26px;
+    color: var(--pine-dark);
+    margin-bottom: 16px;
+    letter-spacing: -0.015em;
+  }
+  .cta-back p {
+    font-size: 15px;
+    color: var(--ink-soft);
+    margin-bottom: 22px;
+    max-width: 50ch;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .cta-back a {
+    display: inline-block;
+    padding: 14px 26px;
+    background: var(--rust);
+    color: var(--paper);
+    font-family: 'Familjen Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 14.5px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    border: 1.5px solid var(--ink);
+    text-decoration: none;
+    transition: transform 0.15s, box-shadow 0.15s, background 0.15s;
+  }
+  .cta-back a:hover {
+    background: var(--rust-dark);
+    color: var(--paper);
+    transform: translate(-2px, -2px);
+    box-shadow: 4px 4px 0 var(--gold);
+  }
+
+  /* FOOTER (matches homepage) */
+  footer { background: var(--ink); color: var(--paper-warm); padding: 50px 0 30px; }
+  footer .wrap { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; }
+  @media (max-width: 720px) { footer .wrap { grid-template-columns: 1fr; gap: 28px; } }
+  footer h5 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 12px;
+  }
+  footer p, footer a {
+    font-size: 13px; line-height: 1.6;
+    color: #c9c0a4; text-decoration: none; display: block; margin-bottom: 4px;
+  }
+  footer a:hover { color: var(--gold); }
+  footer .mark {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 800; font-size: 22px;
+    color: var(--paper); margin-bottom: 10px; letter-spacing: -0.02em;
+  }
+  footer .fine {
+    margin-top: 36px; padding-top: 18px;
+    border-top: 1px solid #ffffff18;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; letter-spacing: 0.05em;
+    color: #8a8378;
+  }
+
+  section[id] { scroll-margin-top: 24px; }
+</style>
+</head>
+<body>
+
+<div class="masthead">
+  <div class="wrap">
+    <a class="mark" href="/">Take Tech Out</a>
+    <div class="right">
+      <a href="/#case">The Case</a>
+      <a href="/research" class="active">Research</a>
+      <a href="/#email">Email the Board</a>
+    </div>
+  </div>
+</div>
+
+<header class="page-hero">
+  <div class="wrap">
+    <div class="eyebrow">For the ISD 709 community / Updated April 2026</div>
+    <h1>The classroom-tech case rests on assumptions <em>the research does not support.</em></h1>
+    <p class="lede">Two parallel bodies of peer-reviewed evidence have converged on the same conclusion: heavy classroom screen use does not deliver the academic gains it promises, and time spent learning outdoors does. This page is the citation list for that argument.</p>
+    <div class="meta-strip">
+      <span>The EdTech evidence base</span>
+      <span>Outdoor learning &amp; academic success</span>
+      <span>What ISD 709 should do</span>
+    </div>
+  </div>
+</header>
+
+<section class="converge">
+  <div class="grid">
+    <h2>Two converging conclusions.</h2>
+    <div>
+      <p><strong>The first conclusion</strong> comes from twelve years of US and international evidence on classroom technology: the assumption that more screens, more devices, and more "personalized learning" platforms will improve student achievement is not supported by the data. Where the effects are measurable, they are often null, sometimes negative, and frequently widen rather than narrow opportunity gaps.</p>
+      <p><strong>The second conclusion</strong> comes from environmental psychology, public health, and education research: hundreds of peer-reviewed studies and multiple systematic reviews have established that regular time learning outdoors improves attention, working memory, engagement, and academic outcomes — particularly for students who struggle in traditional indoor classrooms.</p>
+      <p>Take Tech Out is built on those two conclusions.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECTION 01 — SCREENS DON'T DELIVER
+     ============================================================ -->
+<section id="screens" class="rsection">
+  <div class="wrap">
+    <div class="section-num">Section 01 — The classroom technology evidence</div>
+    <h2>Classroom screens <em>don't deliver what they promise.</em></h2>
+    <p class="deck">A peer-reviewed evidence base — education policy research, large-scale international assessments, longitudinal child development data, and the most recent neuroscience — shows that the assumptions driving K-12 device spending are not supported by outcomes.</p>
+
+    <div class="cards">
+      <article class="card anchor">
+        <div class="tag">★ Anchor citation / Sept 2025</div>
+        <h3 class="title">Fit for Purpose? How Today's Commercial Digital Platforms Subvert Key Goals of Public Education</h3>
+        <div class="source">Boninger, F. &amp; Nichols, T. P. — National Education Policy Center, University of Colorado Boulder. Double-blind peer-reviewed.</div>
+        <p class="finding">A 60-page policy brief synthesizing the research. Documents that <strong>research does not support the presumption that digital approaches to schooling are better than non-digital alternatives</strong>, that the average district uses <strong>over 2,700 distinct ed tech products per year</strong>, and that "personalized learning" claims lack empirical support. Recommends limiting educational screen time, particularly for young students. Shows that <strong>scores on "The Nation's Report Card" began deteriorating in 2012 — when many schools began providing 1:1 devices.</strong></p>
+      </article>
+
+      <article class="card anchor">
+        <div class="tag">★ Trade book / 2026</div>
+        <h3 class="title">The Digital Delusion: How Classroom Technology Harms Our Kids' Learning — and How to Help Them Thrive Again</h3>
+        <div class="source">Horvath, J. C. — Penguin Random House, 2026</div>
+        <p class="finding">By the neuroscientist and former classroom teacher who testified before the US Senate on the impact of classroom technology. Reviews meta-analyses covering tens of thousands of studies and concludes: <strong>in nearly every context, ed tech does not come close to the minimum threshold for meaningful learning impact.</strong> Documents that scores on 21 nationwide benchmark tests peaked in 2012–15 and declined thereafter as in-class device use rose.</p>
+      </article>
+
+      <article class="card">
+        <div class="tag">Longitudinal evidence / 2022</div>
+        <h3 class="title">Exploring the Negative and Gap-Widening Effects of EdTech on Young Children's Learning Achievement</h3>
+        <div class="source">Ahn, J. — <em>Int. J. Environ. Res. Public Health</em>, 19(9): 5430</div>
+        <p class="finding">Quantitative analysis of US K-3 children using the Early Childhood Longitudinal Study, Kindergarten Class of 2010-11 (ECLS-K:2011). Identifies <strong>two adverse effects of classroom EdTech</strong> on young children's learning achievement: <strong>a negative effect on overall learning</strong>, and a <strong>gap-widening effect across socioeconomic lines</strong>.</p>
+      </article>
+
+      <article class="card">
+        <div class="tag">International assessment / 2023</div>
+        <h3 class="title">PISA 2022 Results — OECD analysis of computer-based learning</h3>
+        <div class="source">Organisation for Economic Co-operation and Development</div>
+        <p class="finding">An hour or less per week of computer-based learning correlated with higher math scores than no computer use. <strong>That benefit disappeared and then reversed as screen time increased.</strong> The OECD found declines in student reading performance "in countries where it is more common for students to use the Internet at school for schoolwork."</p>
+      </article>
+
+      <article class="card">
+        <div class="tag">UNESCO global review / 2023</div>
+        <h3 class="title">Technology in education: A tool on whose terms?</h3>
+        <div class="source">UNESCO Global Education Monitoring Report</div>
+        <p class="finding">Comprehensive global review of education technology. Attributes the dearth of efficacy evidence in part to the <strong>rapid product churn — ed tech products change, on average, every 36 months</strong>, faster than rigorous evaluation cycles can keep up. Calls for evidence-based, cautious adoption.</p>
+      </article>
+
+      <article class="card">
+        <div class="tag">"Personalized learning" claims / 2017–2022</div>
+        <h3 class="title">RAND Corporation studies on personalized learning; Summit Public Schools evaluations</h3>
+        <div class="source">Multiple RAND reports and peer-reviewed evaluations</div>
+        <p class="finding">RAND's extensive multi-year study of schools that adopted personalized learning practices schoolwide was inconclusive. Summit Public Schools, despite disseminating its blended learning program to nearly 400 US schools by 2018, <strong>could not substantiate its academic-success claims</strong>.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECTION 02 — OUTSIDE BOOSTS LEARNING
+     ============================================================ -->
+<section id="outside" class="rsection">
+  <div class="wrap">
+    <div class="section-num">Section 02 — The outdoor learning evidence</div>
+    <h2>Time outside <em>boosts learning.</em></h2>
+    <p class="deck">The clearest synthesis of this evidence is a 2019 <em>Frontiers in Psychology</em> review identifying eight distinct mechanisms by which nature exposure improves academic outcomes. Below: that review, the strongest empirical study, and the most recent comprehensive meta-analysis.</p>
+
+    <div class="cards">
+      <article class="card anchor">
+        <div class="tag">★ Anchor citation / 2019</div>
+        <h3 class="title">Do Experiences With Nature Promote Learning? Converging Evidence of a Cause-and-Effect Relationship</h3>
+        <div class="source">Kuo, M., Barnes, M., &amp; Jordan, C. — <em>Frontiers in Psychology</em>, 10:305</div>
+        <p class="finding">An open-access integrative review with thousands of citations. Identifies eight mechanisms — <strong>rejuvenated attention, stress relief, improved self-discipline, increased physical activity, self-motivation, engagement, cooperative behavior, and a calmer learning environment.</strong> Co-authored by Catherine Jordan at the University of Minnesota.</p>
+      </article>
+
+      <article class="card">
+        <div class="tag">Strongest empirical study / 2015</div>
+        <h3 class="title">Green spaces and cognitive development in primary schoolchildren</h3>
+        <div class="source">Dadvand, P., et al. — <em>Proc. Natl. Acad. Sci. USA</em>, 112(26): 7937–7942</div>
+        <p class="finding">Twelve-month longitudinal study of 2,593 schoolchildren across 36 primary schools in Barcelona, ages 7–10. <strong>Greenness at school (more than at home) was associated with improvements in working memory, superior working memory, and reduced inattentiveness</strong> — controlling for ethnicity, maternal education, and parental employment.</p>
+      </article>
+
+      <article class="card">
+        <div class="tag">Most recent synthesis / 2025</div>
+        <h3 class="title">The Effects of Outdoor Teaching on Academic Achievement and Its Associated Factors — A Scoping Review</h3>
+        <div class="source">Pyrko et al. — <em>Education Sciences</em>, 15(8): 1060</div>
+        <p class="finding">Analyzed <strong>41 studies covering 10,453 students</strong> from preschool to college. Concluded that outdoor teaching appears to improve learning specifically in sciences, reading, writing, social studies, and mathematics, and supports academic-achievement-associated factors including self-awareness, school climate, motivation, and well-being.</p>
+      </article>
+
+      <article class="card">
+        <div class="tag">ADHD &amp; equity / 2009</div>
+        <h3 class="title">Children with attention deficits concentrate better after walk in the park</h3>
+        <div class="source">Faber Taylor, A., &amp; Kuo, F. E. — <em>Journal of Attention Disorders</em>, 12(5): 402–409</div>
+        <p class="finding">Experimental demonstration that nature exposure <strong>reduces ADHD symptoms with effect sizes comparable to medication doses</strong>. Foundational evidence for the proposition that outdoor learning works <em>especially well</em> for students who struggle with conventional indoor instruction.</p>
+      </article>
+
+      <article class="card">
+        <div class="tag">Curriculum-integrated outdoor learning / 2017</div>
+        <h3 class="title">Effects of Regular Classes in Outdoor Education Settings: A Systematic Review on Students' Learning, Social and Health Dimensions</h3>
+        <div class="source">Becker, C., et al. — <em>Int. J. Environ. Res. Public Health</em>, 14(5): 485</div>
+        <p class="finding">The most-cited recent review focused specifically on regular curriculum-based outdoor classes — closest to what Take Tech Out actually proposes. Found <strong>positive effects across academic achievement, social skills, and physical and psychological wellbeing</strong>.</p>
+      </article>
+
+      <article class="card">
+        <div class="tag">Danish udeskole field studies / 2018+</div>
+        <h3 class="title">The TEACHOUT studies (Bølling, Mygind, Bentsen et al.)</h3>
+        <div class="source">University of Copenhagen / Steno Diabetes Center — multiple papers</div>
+        <p class="finding">Peer-reviewed Danish field studies on the udeskole model — one outdoor learning day per week or fortnight, ages 7–16. Found <strong>measurable improvements in reading scores, social well-being, peer affiliations, and intrinsic motivation</strong> in udeskole-participating classes. The directly applicable empirical base for the cadence recommended in Section 03.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECTION 03 — IMPLEMENTATION
+     ============================================================ -->
+<section id="implementation" class="impl">
+  <div class="wrap">
+    <div class="section-num">Section 03 — What ISD 709 should do</div>
+    <h2>A phased path, <em>funded by reallocation.</em></h2>
+    <p class="deck">No curriculum overhaul. No new headcount. No mandatory teacher retraining. The pattern that already works at scale — in Denmark and in Fairfax County, Virginia — translates directly to ISD 709 in four steps.</p>
+
+    <div class="phases">
+      <div class="phase">
+        <h3>Pilot with willing teachers (Year 1)</h3>
+        <p>Identify K–2 teachers with existing interest in outdoor instruction — the "early adopters" pattern documented in the 2024 <em>Frontiers in Public Health</em> study. Set the cadence on the Danish <em>udeskole</em> standard: one outdoor learning day per week or fortnight, taught by the existing classroom teacher in core subjects. <strong>This is the same model practiced in 28% of Danish primary and lower secondary schools.</strong> Provide modest gear stipends and schoolyard infrastructure improvements through reallocation of existing facilities and curriculum budgets.</p>
+      </div>
+
+      <div class="phase">
+        <h3>Reallocate existing positions (Year 1–2)</h3>
+        <p>On the Fairfax / Clearview model, redirect a fraction of existing resource teacher and curriculum specialist FTEs toward outdoor learning coordination. <strong>The model scales lean:</strong> Fairfax County Public Schools' Get2Green program coordinates outdoor and environmental learning for ~180,000 students across roughly 200 schools with <strong>just two FTE central staff.</strong> At Clearview Elementary in Virginia, a kindergarten teacher transitioned into a part-time K–3 outdoor learning role funded by repurposing an existing resource teacher position. Concurrently, reduce the budget and staffing of the Digital Innovation department and Chromebook program in proportion to the screen-time reduction underway. The transition is funded by what it replaces.</p>
+      </div>
+
+      <div class="phase">
+        <h3>Build voluntary PD through community partnerships (Year 2–3)</h3>
+        <p>Establish formal partnerships with the University of Minnesota Duluth (Department of Education), Hartley Nature Center, and the 1854 Treaty Authority. Cohort-based, voluntary, paid-time professional development on the Fairfax "Teaching in Nature's Classroom" model. No teacher is mandated to participate.</p>
+      </div>
+
+      <div class="phase">
+        <h3>Sequence the practice up through grade levels (Year 3–5)</h3>
+        <p>Following the Danish udeskole age range (7–16), expand outdoor learning days into grades 3–8 as the K–2 cohort matures and as the teacher network of trained early adopters grows organically. The curriculum is unchanged — the location of instruction expands.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECTION 04 — READING LIST
+     ============================================================ -->
+<section id="reading" class="reading">
+  <div class="wrap">
+    <div class="section-num">Section 04 — The reading list</div>
+    <h2>Full citations.</h2>
+    <p class="deck">Selected peer-reviewed sources and trade books. Where freely available, links go to the full text. Where the work is paywalled, abstracts are open.</p>
+
+    <div class="reading-list">
+
+      <div class="ref">
+        <div class="year">2025</div>
+        <div class="body"><strong>Boninger, F., &amp; Nichols, T. P.</strong> Fit for Purpose? How Today's Commercial Digital Platforms Subvert Key Goals of Public Education. National Education Policy Center, University of Colorado Boulder. <a href="https://nepc.colorado.edu/publication/digital-platforms" target="_blank" rel="noopener">nepc.colorado.edu/publication/digital-platforms</a></div>
+      </div>
+
+      <div class="ref">
+        <div class="year">2026</div>
+        <div class="body"><strong>Horvath, J. C.</strong> The Digital Delusion: How Classroom Technology Harms Our Kids' Learning — and How to Help Them Thrive Again. Penguin Random House. <a href="https://www.penguinrandomhouse.com/books/838437/the-digital-delusion-by-jared-cooney-horvath-phd-med/" target="_blank" rel="noopener">penguinrandomhouse.com</a></div>
+      </div>
+
+      <div class="ref">
+        <div class="year">2022</div>
+        <div class="body"><strong>Ahn, J.</strong> Exploring the Negative and Gap-Widening Effects of EdTech on Young Children's Learning Achievement: Evidence from a Longitudinal Dataset of Children in American K–3 Classrooms. <em>International Journal of Environmental Research and Public Health</em>, 19(9), 5430.</div>
+      </div>
+
+      <div class="ref">
+        <div class="year">2023</div>
+        <div class="body"><strong>UNESCO Global Education Monitoring Report.</strong> Technology in education: A tool on whose terms? Paris: UNESCO. <a href="https://www.unesco.org/gem-report/" target="_blank" rel="noopener">unesco.org/gem-report</a></div>
+      </div>
+
+      <div class="ref">
+        <div class="year">2023</div>
+        <div class="body"><strong>OECD.</strong> PISA 2022 Results (Volume II): Learning During — and From — Disruption. Organisation for Economic Co-operation and Development.</div>
+      </div>
+
+      <div class="ref">
+        <div class="year">2019</div>
+        <div class="body"><strong>Kuo, M., Barnes, M., &amp; Jordan, C.</strong> Do experiences with nature promote learning? Converging evidence of a cause-and-effect relationship. <em>Frontiers in Psychology</em>, 10, 305. <a href="https://doi.org/10.3389/fpsyg.2019.00305" target="_blank" rel="noopener">doi.org/10.3389/fpsyg.2019.00305</a></div>
+      </div>
+
+      <div class="ref">
+        <div class="year">2015</div>
+        <div class="body"><strong>Dadvand, P., Nieuwenhuijsen, M. J., Esnaola, M., et al.</strong> Green spaces and cognitive development in primary schoolchildren. <em>Proceedings of the National Academy of Sciences</em>, 112(26), 7937–7942. <a href="https://doi.org/10.1073/pnas.1503402112" target="_blank" rel="noopener">doi.org/10.1073/pnas.1503402112</a></div>
+      </div>
+
+      <div class="ref">
+        <div class="year">2025</div>
+        <div class="body"><strong>Pyrko, E., et al.</strong> The Effects of Outdoor Teaching on Academic Achievement and Its Associated Factors—A Scoping Review. <em>Education Sciences</em>, 15(8), 1060.</div>
+      </div>
+
+      <div class="ref">
+        <div class="year">2009</div>
+        <div class="body"><strong>Faber Taylor, A., &amp; Kuo, F. E.</strong> Children with attention deficits concentrate better after walk in the park. <em>Journal of Attention Disorders</em>, 12(5), 402–409.</div>
+      </div>
+
+      <div class="ref">
+        <div class="year">2017</div>
+        <div class="body"><strong>Becker, C., Lauterbach, G., Spengler, S., et al.</strong> Effects of regular classes in outdoor education settings: A systematic review on students' learning, social and health dimensions. <em>International Journal of Environmental Research and Public Health</em>, 14(5), 485.</div>
+      </div>
+
+      <div class="ref">
+        <div class="year">2012</div>
+        <div class="body"><strong>Bentsen, P., Jensen, F. S., Mygind, E., &amp; Randrup, T. B.</strong> The nature of udeskole: Outdoor learning theory and practice in Danish schools. <em>Journal of Adventure Education &amp; Outdoor Learning</em>, 12(3), 199–219.</div>
+      </div>
+
+      <div class="ref">
+        <div class="year">2018</div>
+        <div class="body"><strong>Bølling, M., Otte, C. R., Elsborg, P., Nielsen, G., &amp; Bentsen, P.</strong> The association between education outside the classroom and students' school motivation: Results from a one-school-year quasi-experiment. <em>International Journal of Educational Research</em>, 89, 22–35.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CTA back to homepage -->
+<section class="cta-back">
+  <div class="narrow">
+    <h3>Now do something with this.</h3>
+    <p>The research only matters if it reaches the School Board, the Superintendent, and your neighbors. Sign the petition, write your representative, or show up.</p>
+    <a href="/#sign">Sign the petition →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <div class="mark">Take Tech Out.</div>
+      <p>A volunteer campaign of Duluth parents, teachers, and residents asking ISD 709 to put books, teachers, and the outdoors back at the center of our kids' school day. Not paid, not corporate, not partisan.</p>
+    </div>
+    <div>
+      <h5>Navigate</h5>
+      <a href="/#case">The Case</a>
+      <a href="/research">Research</a>
+      <a href="/#email">Email the Board</a>
+    </div>
+    <div>
+      <h5>Contact</h5>
+      <a href="mailto:hello@take-tech-out.org">hello@take-tech-out.org</a>
+      <p>Duluth, Minnesota<br/>ISD 709 community</p>
+    </div>
+  </div>
+  <div class="wrap fine">
+    © 2026 Take Tech Out · A volunteer campaign of Duluth parents, teachers, and residents
+  </div>
+</footer>
+
+</body>
+</html>
